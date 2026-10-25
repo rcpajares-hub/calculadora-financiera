@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora cuota de autónomo 2026 | Cuentas Claras</title>
+  <meta name="description" content="Calcula tu cuota de autónomo según tus ingresos reales: tramo, base mínima de cotización, tarifa plana, IRPF estimado y lo que te queda neto cada mes.">
+  <link rel="canonical" href="https://calculadora-cuentas-claras.netlify.app/cuota-autonomo">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=PT+Sans+Narrow:wght@400;700&display=swap">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1133184139072632" crossorigin="anonymous"></script>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f6b55'/%3E%3Cpath d='M9 21h14M9 16h14M9 11h8' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "¿Cómo se calcula la cuota de autónomo?", "acceptedAnswer": {"@type": "Answer", "text": "Se calcula el rendimiento neto mensual (ingresos menos gastos, con una deducción genérica del 7 %), se busca el tramo correspondiente en la tabla de la Seguridad Social y se aplica el tipo de cotización a la base mínima de ese tramo."}},
+      {"@type": "Question", "name": "¿Qué es la tarifa plana de autónomos?", "acceptedAnswer": {"@type": "Answer", "text": "Es una cuota reducida de 80 € al mes durante los primeros 12 meses de actividad para nuevos autónomos, prorrogable otros 12 si los rendimientos no superan el salario mínimo."}},
+      {"@type": "Question", "name": "¿Qué pasa si mis ingresos cambian durante el año?", "acceptedAnswer": {"@type": "Answer", "text": "Puedes cambiar de tramo hasta seis veces al año. Al final del ejercicio la Seguridad Social regulariza la cuota con los rendimientos reales comunicados por Hacienda."}}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="currentColor" style="color:var(--accent)"/><path d="M9 21h14M9 16h14M9 11h8" stroke="var(--surface)" stroke-width="3" stroke-linecap="round"/></svg>
+        Cuentas Claras
+      </a>
+      <nav class="nav" aria-label="Calculadoras">
+        <a href="sueldo-neto.html">Sueldo neto</a>
+        <a href="irpf.html">IRPF</a>
+        <a href="hipoteca.html">Hipoteca</a>
+        <a href="cuota-autonomo.html" aria-current="page">Autónomos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="page-head">
+      <span class="badge">Cotización por ingresos reales · <span data-year></span></span>
+      <h1>Calculadora de cuota de autónomo</h1>
+      <p class="lead">Descubre en qué tramo estás, cuánto pagarás cada mes a la Seguridad Social y cuánto te queda limpio después de IRPF.</p>
+    </div>
+
+    <section class="calc">
+      <form id="f" class="card" novalidate>
+        <span class="label fieldset-title" id="per-l">Introduce importes</span>
+        <div class="seg-control" role="radiogroup" aria-labelledby="per-l" style="margin-bottom:1rem">
+          <label><input type="radio" name="periodo" value="1" checked><span>Anuales</span></label>
+          <label><input type="radio" name="periodo" value="12"><span>Mensuales</span></label>
+        </div>
+
+        <div class="field">
+          <label for="ingresos">Facturación (sin IVA)</label>
+          <div class="input-wrap"><input id="ingresos" type="text" inputmode="decimal" value="36.000" data-money autocomplete="off"><span class="suffix">€</span></div>
+        </div>
+        <div class="field">
+          <label for="gastos">Gastos deducibles</label>
+          <div class="input-wrap"><input id="gastos" type="text" inputmode="decimal" value="6.000" data-money autocomplete="off"><span class="suffix">€</span></div>
+          <span class="hint">Sin IVA y sin incluir la propia cuota de autónomo</span>
+        </div>
+
+        <div class="field">
+          <label for="forma">Forma de trabajar</label>
+          <select id="forma">
+            <option value="fisica">Autónomo persona física</option>
+            <option value="societario">Autónomo societario (administrador de SL)</option>
+          </select>
+        </div>
+
+        <label class="check"><input id="tp" type="checkbox"><span>Tengo tarifa plana<br><span class="hint">80 €/mes durante el primer año de alta</span></span></label>
+
+        <hr class="divider">
+        <p class="fieldset-title">Para estimar el IRPF</p>
+        <div class="row">
+          <div class="field">
+            <label for="edad">Edad</label>
+            <input id="edad" type="number" inputmode="numeric" min="16" max="99" value="35">
+          </div>
+          <div class="field">
+            <label for="hijos">Hijos a cargo</label>
+            <input id="hijos" type="number" inputmode="numeric" min="0" max="15" value="0">
+          </div>
+        </div>
+      </form>
+
+      <div class="card results" aria-live="polite">
+        <div class="hero">
+          <div class="k">Cuota mensual de autónomo</div>
+          <div class="v" id="hero-v">—</div>
+          <div class="s" id="hero-s"></div>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi"><div class="k">Rendimiento neto mensual</div><div class="v" id="k-rn">—</div></div>
+          <div class="kpi"><div class="k">Base de cotización</div><div class="v" id="k-base">—</div></div>
+          <div class="kpi"><div class="k">Te queda al mes</div><div class="v" id="k-neto">—</div></div>
+          <div class="kpi"><div class="k">IRPF anual estimado</div><div class="v" id="k-irpf">—</div></div>
+        </div>
+
+        <div id="bar"></div>
+        <ul class="lines" id="lines"></ul>
+        <div id="notes"></div>
+
+        <details class="more">
+          <summary>Tabla de tramos <span data-year></span></summary>
+          <div class="table-wrap table-scroll"><table>
+            <thead><tr><th>Tramo</th><th>Rendimiento neto / mes</th><th>Base mínima</th><th>Cuota</th></tr></thead>
+            <tbody id="t-tramos"></tbody>
+          </table></div>
+        </details>
+      </div>
+    </section>
+
+    <article class="content">
+      <h2>Cómo funciona la cuota de autónomos por ingresos reales</h2>
+      <p>Desde 2023 los autónomos cotizan según sus <strong>rendimientos netos</strong>. Hay 15 tramos: tres en una tabla reducida para ingresos bajos y doce en la tabla general. Cada tramo tiene una base mínima y una máxima, y puedes elegir cualquier base dentro de tu tramo.</p>
+      <ol>
+        <li>Calcula tu rendimiento neto anual: ingresos menos gastos deducibles, <em>sumando</em> la cuota de autónomo si ya la habías restado.</li>
+        <li>Aplica la deducción por gastos genéricos: un 7 % (3 % si eres autónomo societario).</li>
+        <li>Divide entre 12 para obtener el rendimiento mensual y busca tu tramo.</li>
+        <li>Multiplica la base de cotización por el tipo vigente (31,5 % en <span data-year></span>, incluido el MEI).</li>
+      </ol>
+      <h3>Regularización anual</h3>
+      <p>La cuota que pagas durante el año es provisional. Cuando Hacienda comunica tus rendimientos reales, la Seguridad Social compara y te devuelve lo pagado de más o te reclama la diferencia. Por eso conviene revisar el tramo si tus ingresos cambian: puedes hacerlo hasta seis veces al año.</p>
+      <h3>IRPF del autónomo</h3>
+      <p>Además de la cuota, tributas por IRPF. Si no facturas a empresas que te retengan, debes presentar cada trimestre el <strong>modelo 130</strong>, ingresando el 20 % del rendimiento neto acumulado. La calculadora estima el IRPF anual en estimación directa simplificada, con una deducción del 5 % por gastos de difícil justificación (máximo 2.000 €).</p>
+
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        <details><summary>¿Qué es la tarifa plana?</summary><p>Los nuevos autónomos pagan 80 € al mes durante los primeros 12 meses. Si en el segundo año sus rendimientos no superan el salario mínimo, pueden prorrogarla 12 meses más.</p></details>
+        <details><summary>¿Puedo cotizar por una base superior a la mínima?</summary><p>Sí. Cotizar por más aumenta tu futura pensión y prestaciones como la incapacidad temporal, a cambio de una cuota mayor.</p></details>
+        <details><summary>¿La cuota de autónomo es deducible?</summary><p>Sí. La cuota de la Seguridad Social es un gasto deducible en el IRPF, por eso la calculadora la resta antes de estimar el impuesto.</p></details>
+        <details><summary>¿Qué ocurre si gano menos que el tramo más bajo?</summary><p>Igualmente debes pagar la cuota mínima del primer tramo mientras estés de alta, salvo que tengas derecho a tarifa plana u otra bonificación.</p></details>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap cols">
+      <p>© <span data-year></span> Cuentas Claras. Resultados orientativos; no sustituyen el asesoramiento de un profesional ni los cálculos oficiales de la AEAT o la Seguridad Social.</p>
+      <nav aria-label="Pie"><a href="sueldo-neto.html">Sueldo neto</a><a href="irpf.html">IRPF</a><a href="hipoteca.html">Hipoteca</a><a href="cuota-autonomo.html">Autónomos</a></nav>
+      <nav class="legal-links" aria-label="Legal"><a href="aviso-legal.html">Aviso legal</a><a href="politica-privacidad.html">Política de privacidad</a><a href="politica-cookies.html">Política de cookies</a><a href="politica-cookies.html#gestionar" data-cookie-settings>Configurar cookies</a></nav>
+    </div>
+  </footer>
+
+  <script src="assets/fiscal.js"></script>
+  <script src="assets/ui.js"></script>
+  <script>
+    (function () {
+      const { eur, pct } = UI;
+      const P = Fiscal.PARAM;
+
+      function calcular() {
+        const mult = Number(UI.$('input[name="periodo"]:checked').value);
+        const r = Fiscal.calcularAutonomo({
+          ingresos: UI.val('ingresos') * mult, gastos: UI.val('gastos') * mult,
+          societario: UI.sel('forma') === 'societario', tarifaPlana: UI.checked('tp'),
+          edad: UI.val('edad'), hijos: Math.max(0, Math.floor(UI.val('hijos'))), compartidos: true
+        });
+
+        UI.set('hero-v', eur(r.cuotaMensual));
+        UI.set('hero-s', r.cuotaMensual === r.cuotaOrdinaria
+          ? `Tramo ${r.tramoIndex + 1} de 15 · tabla ${r.tramo.tabla.toLowerCase()} · ${eur(r.cuotaAnual, 0)} al año`
+          : `Tarifa plana · sin ella pagarías ${eur(r.cuotaOrdinaria)} (tramo ${r.tramoIndex + 1})`);
+        UI.set('k-rn', eur(r.rendimientoMensual));
+        UI.set('k-base', eur(r.tramo.base));
+        UI.set('k-neto', eur(r.netoMensual));
+        UI.set('k-irpf', eur(r.irpf, 0));
+
+        UI.bar('bar', [
+          { label: 'Neto', value: r.netoAnual, cls: 's1' },
+          { label: 'IRPF', value: r.irpf, cls: 's2' },
+          { label: 'Cuota autónomo', value: r.cuotaAnual, cls: 's3' },
+          { label: 'Gastos', value: r.gastos, cls: 's4' }
+        ]);
+
+        UI.html('lines', [
+          ['Facturación anual', eur(r.ingresos)],
+          ['Gastos deducibles', '− ' + eur(r.gastos)],
+          ['Cuota de autónomo (12 meses)', '− ' + eur(r.cuotaAnual)],
+          ['IRPF estimado', '− ' + eur(r.irpf)]
+        ].map(([k, v]) => `<li><span>${k}</span><b>${v}</b></li>`).join('') +
+          `<li class="total"><span>Te queda limpio al año</span><b>${eur(r.netoAnual)}</b></li>`);
+
+        const notas = [];
+        if (r.rendimientoAnual < 0) notas.push(['warn', 'Tus gastos superan a tus ingresos. Aun así debes pagar la cuota mínima mientras estés de alta.']);
+        notas.push(['', `Pago trimestral orientativo del modelo 130: ${eur(r.pagoFraccionado / 4)} (20 % del rendimiento neto), salvo que tus clientes te practiquen retención.`]);
+        UI.html('notes', notas.map(([c, t]) => `<p class="note ${c}">${t}</p>`).join(''));
+
+        let desde = 0;
+        UI.html('t-tramos', P.autonomoTramos.map((t, i) => {
+          const rango = t.hasta === Infinity ? `> ${eur(desde, 0)}` : `${eur(desde, 0)} – ${eur(t.hasta)}`;
+          desde = t.hasta;
+          return `<tr class="${i === r.tramoIndex ? 'hl' : ''}"><td>${i + 1}${i < 3 ? ' (red.)' : ''}</td><td>${rango}</td><td>${eur(t.base)}</td><td>${eur(t.base * P.autonomoTipo)}</td></tr>`;
+        }).join(''));
+      }
+      // Al cambiar de anual a mensual (o al revés) se convierten los importes ya escritos
+      UI.$$('input[name="periodo"]').forEach((radio) => radio.addEventListener('change', () => {
+        const factor = radio.value === '12' ? 1 / 12 : 12;
+        ['ingresos', 'gastos'].forEach((id) => { UI.$('#' + id).value = UI.num(Math.round(UI.val(id) * factor * 100) / 100); });
+        calcular();
+      }));
+      UI.bind('f', calcular);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de sueldo neto 2026 | Cuentas Claras</title>
+  <meta name="description" content="Calcula tu sueldo neto mensual y anual en España a partir del bruto: retención de IRPF, cotizaciones a la Seguridad Social, 12 o 14 pagas y coste para la empresa.">
+  <link rel="canonical" href="https://calculadora-cuentas-claras.netlify.app/sueldo-neto">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=PT+Sans+Narrow:wght@400;700&display=swap">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1133184139072632" crossorigin="anonymous"></script>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f6b55'/%3E%3Cpath d='M9 21h14M9 16h14M9 11h8' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "¿Cómo se calcula el sueldo neto?", "acceptedAnswer": {"@type": "Answer", "text": "Al salario bruto anual se le restan las cotizaciones del trabajador a la Seguridad Social (alrededor del 6,5 %) y la retención de IRPF, que depende del salario, la edad y la situación familiar."}},
+      {"@type": "Question", "name": "¿Cobro más con 12 o con 14 pagas?", "acceptedAnswer": {"@type": "Answer", "text": "El neto anual es el mismo. Con 14 pagas la nómina mensual es menor, pero recibes dos pagas extra, normalmente en verano y Navidad."}},
+      {"@type": "Question", "name": "¿Qué es el coste para la empresa?", "acceptedAnswer": {"@type": "Answer", "text": "Es el salario bruto más las cotizaciones que paga la empresa a la Seguridad Social, que suponen en torno a un 31-33 % adicional sobre el bruto."}}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="currentColor" style="color:var(--accent)"/><path d="M9 21h14M9 16h14M9 11h8" stroke="var(--surface)" stroke-width="3" stroke-linecap="round"/></svg>
+        Cuentas Claras
+      </a>
+      <nav class="nav" aria-label="Calculadoras">
+        <a href="sueldo-neto.html" aria-current="page">Sueldo neto</a>
+        <a href="irpf.html">IRPF</a>
+        <a href="hipoteca.html">Hipoteca</a>
+        <a href="cuota-autonomo.html">Autónomos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="page-head">
+      <span class="badge">Actualizada · <span data-year></span></span>
+      <h1>Calculadora de sueldo neto</h1>
+      <p class="lead">Pasa tu salario bruto a neto: cuánto cobrarás cada mes después de la retención de IRPF y las cotizaciones a la Seguridad Social.</p>
+    </div>
+
+    <section class="calc">
+      <form id="f" class="card" novalidate>
+        <div class="field">
+          <label for="bruto">Salario bruto anual</label>
+          <div class="input-wrap"><input id="bruto" type="text" inputmode="decimal" value="30.000" data-money autocomplete="off"><span class="suffix">€</span></div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <span class="label" id="pagas-l">Número de pagas</span>
+            <div class="seg-control" role="radiogroup" aria-labelledby="pagas-l">
+              <label><input type="radio" name="pagas" value="12" checked><span>12</span></label>
+              <label><input type="radio" name="pagas" value="14"><span>14</span></label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="contrato">Tipo de contrato</label>
+            <select id="contrato">
+              <option value="indefinido">Indefinido</option>
+              <option value="temporal">Temporal</option>
+            </select>
+          </div>
+        </div>
+
+        <hr class="divider">
+        <p class="fieldset-title">Situación personal</p>
+
+        <div class="row">
+          <div class="field">
+            <label for="edad">Edad</label>
+            <input id="edad" type="number" inputmode="numeric" min="16" max="99" value="35">
+          </div>
+          <div class="field">
+            <label for="hijos">Hijos a cargo</label>
+            <input id="hijos" type="number" inputmode="numeric" min="0" max="15" value="0">
+            <span class="hint">Menores de 25 años que conviven contigo</span>
+          </div>
+        </div>
+        <div class="field" id="menores3-f">
+          <label for="menores3">De ellos, menores de 3 años</label>
+          <input id="menores3" type="number" inputmode="numeric" min="0" max="15" value="0">
+        </div>
+        <label class="check" id="compartidos-f"><input id="compartidos" type="checkbox" checked>
+          <span>Comparto los hijos con el otro progenitor<br><span class="hint">El mínimo por descendientes se reparte al 50 %</span></span>
+        </label>
+      </form>
+
+      <div class="card results" aria-live="polite">
+        <div class="hero">
+          <div class="k" id="hero-k">Sueldo neto mensual</div>
+          <div class="v" id="hero-v">—</div>
+          <div class="s" id="hero-s"></div>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi"><div class="k">Neto anual</div><div class="v" id="k-neto">—</div></div>
+          <div class="kpi"><div class="k">Retención IRPF</div><div class="v" id="k-tipo">—</div></div>
+        </div>
+
+        <div id="bar"></div>
+
+        <ul class="lines">
+          <li><span>Salario bruto anual</span><b id="l-bruto"></b></li>
+          <li><span>Seguridad Social (<span id="l-ss-t"></span>)</span><b id="l-ss"></b></li>
+          <li><span>Retención IRPF</span><b id="l-irpf"></b></li>
+          <li class="total"><span>Sueldo neto anual</span><b id="l-neto"></b></li>
+        </ul>
+
+        <details class="more">
+          <summary>Ver cálculo detallado</summary>
+          <h3>Cotizaciones del trabajador</h3>
+          <div class="table-wrap"><table><thead><tr><th>Concepto</th><th>Tipo</th><th>Anual</th><th>Mensual</th></tr></thead><tbody id="t-ss"></tbody></table></div>
+          <h3>Cálculo de la retención</h3>
+          <ul class="lines" id="d-ret"></ul>
+          <h3>Coste para la empresa</h3>
+          <ul class="lines" id="d-emp"></ul>
+        </details>
+      </div>
+    </section>
+
+    <article class="content">
+      <h2>Cómo se calcula el sueldo neto en España</h2>
+      <p>El sueldo neto es lo que realmente llega a tu cuenta. Para obtenerlo se parte del <strong>salario bruto</strong> pactado en el contrato y se le restan dos conceptos:</p>
+      <ol>
+        <li><strong>Cotizaciones a la Seguridad Social</strong>: el trabajador aporta un 4,70 % por contingencias comunes, un 1,55 % por desempleo (1,60 % si el contrato es temporal), un 0,10 % de formación profesional y la cuota del Mecanismo de Equidad Intergeneracional (MEI). En total, alrededor de un 6,5 % del bruto, con el tope de la base máxima de cotización.</li>
+        <li><strong>Retención de IRPF</strong>: es un adelanto del impuesto sobre la renta. El porcentaje lo calcula la empresa en función de tu salario, tu edad, tus hijos y tu tipo de contrato. Cuanto más ganas, mayor es el porcentaje.</li>
+      </ol>
+      <h3>12 o 14 pagas</h3>
+      <p>El número de pagas no cambia lo que cobras al año, solo cómo se reparte. Con 14 pagas recibes dos pagas extra (normalmente en junio y diciembre). Como la Seguridad Social se prorratea en las 12 nóminas ordinarias, las pagas extra suelen ser algo mayores que una nómina normal.</p>
+      <h3>¿Por qué mi nómina no coincide exactamente?</h3>
+      <p>Esta calculadora sigue el procedimiento general de retenciones, pero tu nómina real puede variar por complementos, horas extra, retribuciones en especie, discapacidad, movilidad geográfica, pensiones compensatorias o regularizaciones a mitad de año. Además, la retención es solo un anticipo: el impuesto definitivo se calcula en la <a href="irpf.html">declaración de la renta</a>.</p>
+
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        <details><summary>¿Cuánto es el neto de 30.000 € brutos?</summary><p>Para una persona soltera, sin hijos y con contrato indefinido, unos 30.000 € brutos anuales se quedan en torno a 1.900-1.950 € netos al mes en 12 pagas. Ajusta tus datos en la calculadora para obtener tu cifra.</p></details>
+        <details><summary>¿Tener hijos reduce la retención?</summary><p>Sí. Cada hijo a cargo aumenta el mínimo familiar, que es la parte de tus ingresos que no tributa, por lo que la retención baja. Los menores de 3 años suman un mínimo adicional.</p></details>
+        <details><summary>¿Puedo pedir que me retengan más IRPF?</summary><p>Sí. Puedes solicitar por escrito a tu empresa un tipo de retención superior al calculado, lo que suele reducir el importe a pagar en la declaración de la renta.</p></details>
+        <details><summary>¿Qué es el coste para la empresa?</summary><p>Es tu salario bruto más las cotizaciones que paga la empresa a la Seguridad Social: contingencias comunes, desempleo, FOGASA, formación, MEI y accidentes de trabajo. Supone en torno a un 31-33 % más sobre el bruto.</p></details>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap cols">
+      <p>© <span data-year></span> Cuentas Claras. Resultados orientativos; no sustituyen el asesoramiento de un profesional ni los cálculos oficiales de la AEAT o la Seguridad Social.</p>
+      <nav aria-label="Pie"><a href="sueldo-neto.html">Sueldo neto</a><a href="irpf.html">IRPF</a><a href="hipoteca.html">Hipoteca</a><a href="cuota-autonomo.html">Autónomos</a></nav>
+      <nav class="legal-links" aria-label="Legal"><a href="aviso-legal.html">Aviso legal</a><a href="politica-privacidad.html">Política de privacidad</a><a href="politica-cookies.html">Política de cookies</a><a href="politica-cookies.html#gestionar" data-cookie-settings>Configurar cookies</a></nav>
+    </div>
+  </footer>
+
+  <script src="assets/fiscal.js"></script>
+  <script src="assets/ui.js"></script>
+  <script>
+    (function () {
+      const { eur, pct } = UI;
+      function calcular() {
+        const hijos = Math.max(0, Math.floor(UI.val('hijos')));
+        UI.show('menores3-f', hijos > 0);
+        UI.show('compartidos-f', hijos > 0);
+        const pagas = Number(UI.$('input[name="pagas"]:checked').value);
+        const r = Fiscal.calcularNomina({
+          bruto: UI.val('bruto'), pagas, contrato: UI.sel('contrato'), edad: UI.val('edad'),
+          hijos, menores3: Math.min(hijos, Math.max(0, Math.floor(UI.val('menores3')))), compartidos: UI.checked('compartidos')
+        });
+
+        UI.set('hero-k', pagas === 14 ? 'Nómina mensual (14 pagas)' : 'Sueldo neto mensual (12 pagas)');
+        UI.set('hero-v', eur(r.netoMensual));
+        UI.set('hero-s', pagas === 14 ? `+ 2 pagas extra de ${eur(r.netoExtra)}` : `Bruto mensual: ${eur(r.brutoPaga)}`);
+        UI.set('k-neto', eur(r.netoAnual));
+        UI.set('k-tipo', pct(r.tipoRetencion));
+        UI.set('l-bruto', eur(r.bruto));
+        UI.set('l-ss-t', pct(r.ss.tipo * 100));
+        UI.set('l-ss', '− ' + eur(r.ss.total));
+        UI.set('l-irpf', '− ' + eur(r.irpf));
+        UI.set('l-neto', eur(r.netoAnual));
+
+        UI.bar('bar', [
+          { label: 'Neto', value: r.netoAnual, cls: 's1' },
+          { label: 'IRPF', value: r.irpf, cls: 's2' },
+          { label: 'Seguridad Social', value: r.ss.total, cls: 's3' }
+        ]);
+
+        UI.html('t-ss', r.ss.detalle.map((d) =>
+          `<tr><td>${d.concepto}</td><td>${pct(d.tipo * 100)}</td><td>${eur(d.importe)}</td><td>${eur(d.importe / 12)}</td></tr>`).join('') +
+          `<tr class="hl"><td>Total</td><td>${pct(r.ss.tipo * 100)}</td><td>${eur(r.ss.total)}</td><td>${eur(r.ss.total / 12)}</td></tr>`);
+
+        UI.html('d-ret', [
+          ['Rendimiento neto (bruto − SS)', eur(r.rendimientoNeto)],
+          ['Otros gastos deducibles', '− ' + eur(r.otrosGastos)],
+          ['Reducción por rendimientos del trabajo', '− ' + eur(r.reduccion)],
+          ['Base para calcular la retención', eur(r.baseRetencion)],
+          ['Mínimo personal y familiar', eur(r.minimo.total)],
+          ['Límite exento de retención', eur(r.umbral)],
+          ['Tipo de retención', pct(r.tipoRetencion)]
+        ].map(([k, v]) => `<li><span>${k}</span><b>${v}</b></li>`).join(''));
+
+        UI.html('d-emp', [
+          ['Salario bruto', eur(r.bruto)],
+          [`Cotización empresa (${pct(r.empresa.tipo * 100)})`, '+ ' + eur(r.empresa.total)],
+        ].map(([k, v]) => `<li><span>${k}</span><b>${v}</b></li>`).join('') +
+          `<li class="total"><span>Coste total anual</span><b>${eur(r.costeEmpresa)}</b></li>`);
+      }
+      UI.bind('f', calcular);
+    })();
+  </script>
+</body>
+</html>

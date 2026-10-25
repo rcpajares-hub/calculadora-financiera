@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de hipoteca 2026 | Cuentas Claras</title>
+  <meta name="description" content="Calcula la cuota mensual de tu hipoteca fija o variable, los intereses totales, el cuadro de amortización y los impuestos y gastos de compra según tu comunidad autónoma.">
+  <link rel="canonical" href="https://calculadora-cuentas-claras.netlify.app/hipoteca">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=PT+Sans+Narrow:wght@400;700&display=swap">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1133184139072632" crossorigin="anonymous"></script>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f6b55'/%3E%3Cpath d='M9 21h14M9 16h14M9 11h8' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "¿Cuánto dinero necesito ahorrado para comprar una vivienda?", "acceptedAnswer": {"@type": "Answer", "text": "Los bancos suelen financiar hasta el 80 % del precio, así que necesitas el 20 % restante más los impuestos y gastos de compra, que suman entre un 8 % y un 14 % adicional según la comunidad."}},
+      {"@type": "Question", "name": "¿Qué porcentaje de mis ingresos puede ser la cuota?", "acceptedAnswer": {"@type": "Answer", "text": "La recomendación habitual es que la cuota no supere el 30-35 % de los ingresos netos mensuales del hogar."}},
+      {"@type": "Question", "name": "¿Quién paga los gastos de la hipoteca?", "acceptedAnswer": {"@type": "Answer", "text": "Desde la Ley 5/2019 el banco paga la notaría, el registro, la gestoría y el impuesto de AJD de la hipoteca. El comprador paga la tasación y los impuestos y gastos de la compraventa."}}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="currentColor" style="color:var(--accent)"/><path d="M9 21h14M9 16h14M9 11h8" stroke="var(--surface)" stroke-width="3" stroke-linecap="round"/></svg>
+        Cuentas Claras
+      </a>
+      <nav class="nav" aria-label="Calculadoras">
+        <a href="sueldo-neto.html">Sueldo neto</a>
+        <a href="irpf.html">IRPF</a>
+        <a href="hipoteca.html" aria-current="page">Hipoteca</a>
+        <a href="cuota-autonomo.html">Autónomos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="page-head">
+      <span class="badge">Fija y variable</span>
+      <h1>Calculadora de hipoteca</h1>
+      <p class="lead">Calcula la cuota mensual, cuánto pagarás en intereses y todo el dinero que necesitas ahorrado para comprar tu vivienda.</p>
+    </div>
+
+    <section class="calc">
+      <form id="f" class="card" novalidate>
+        <p class="fieldset-title">La vivienda</p>
+        <div class="row">
+          <div class="field">
+            <label for="precio">Precio de la vivienda</label>
+            <div class="input-wrap"><input id="precio" type="text" inputmode="decimal" value="250.000" data-money autocomplete="off"><span class="suffix">€</span></div>
+          </div>
+          <div class="field">
+            <label for="entrada">Ahorro que aportas</label>
+            <div class="input-wrap"><input id="entrada" type="text" inputmode="decimal" value="50.000" data-money autocomplete="off"><span class="suffix">€</span></div>
+            <span class="hint">Entrada, sin contar impuestos</span>
+          </div>
+        </div>
+
+        <hr class="divider">
+        <p class="fieldset-title">El préstamo</p>
+        <div class="field">
+          <span class="label" id="tipo-l">Tipo de interés</span>
+          <div class="seg-control" role="radiogroup" aria-labelledby="tipo-l">
+            <label><input type="radio" name="tipo" value="fijo" checked><span>Fijo</span></label>
+            <label><input type="radio" name="tipo" value="variable"><span>Variable</span></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="plazo">Plazo</label>
+            <div class="input-wrap"><input id="plazo" type="number" inputmode="numeric" min="1" max="40" value="30"><span class="suffix">años</span></div>
+          </div>
+          <div class="field" id="tin-f">
+            <label for="tin">Interés (TIN)</label>
+            <div class="input-wrap"><input id="tin" type="text" inputmode="decimal" value="2,75" autocomplete="off"><span class="suffix">%</span></div>
+          </div>
+        </div>
+        <div class="row" id="var-f" hidden>
+          <div class="field">
+            <label for="euribor">Euríbor</label>
+            <div class="input-wrap"><input id="euribor" type="text" inputmode="decimal" value="2,20" autocomplete="off"><span class="suffix">%</span></div>
+          </div>
+          <div class="field">
+            <label for="dif">Diferencial</label>
+            <div class="input-wrap"><input id="dif" type="text" inputmode="decimal" value="0,60" autocomplete="off"><span class="suffix">%</span></div>
+          </div>
+        </div>
+
+        <hr class="divider">
+        <p class="fieldset-title">Impuestos y gastos de compra</p>
+        <div class="row">
+          <div class="field">
+            <label for="estado">Vivienda</label>
+            <select id="estado">
+              <option value="usada">Segunda mano (ITP)</option>
+              <option value="nueva">Obra nueva (IVA + AJD)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="ccaa">Comunidad autónoma</label>
+            <select id="ccaa"></select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="imp" id="imp-l">ITP</label>
+            <div class="input-wrap"><input id="imp" type="text" inputmode="decimal" autocomplete="off"><span class="suffix">%</span></div>
+            <span class="hint">Tipo general; puede haber bonificaciones</span>
+          </div>
+          <div class="field">
+            <label for="gastos">Notaría, registro, tasación…</label>
+            <div class="input-wrap"><input id="gastos" type="text" inputmode="decimal" value="2.000" data-money autocomplete="off"><span class="suffix">€</span></div>
+          </div>
+        </div>
+
+        <hr class="divider">
+        <div class="field">
+          <label for="ingresos">Ingresos netos mensuales del hogar <span class="hint">(opcional)</span></label>
+          <div class="input-wrap"><input id="ingresos" type="text" inputmode="decimal" value="" placeholder="Ej.: 3.200" data-money autocomplete="off"><span class="suffix">€</span></div>
+        </div>
+      </form>
+
+      <div class="card results" aria-live="polite">
+        <div class="hero">
+          <div class="k">Cuota mensual</div>
+          <div class="v" id="hero-v">—</div>
+          <div class="s" id="hero-s"></div>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi"><div class="k">Importe del préstamo</div><div class="v" id="k-cap">—</div></div>
+          <div class="kpi"><div class="k">Intereses totales</div><div class="v" id="k-int">—</div></div>
+          <div class="kpi"><div class="k">Financiación</div><div class="v" id="k-ltv">—</div></div>
+          <div class="kpi"><div class="k">Ahorro total necesario</div><div class="v" id="k-aho">—</div></div>
+        </div>
+
+        <div id="bar"></div>
+
+        <ul class="lines" id="lines"></ul>
+        <div id="notes"></div>
+
+        <details class="more">
+          <summary>Cuadro de amortización anual</summary>
+          <div class="table-wrap table-scroll"><table>
+            <thead><tr><th>Año</th><th>Pagado</th><th>Intereses</th><th>Capital</th><th>Pendiente</th></tr></thead>
+            <tbody id="t-am"></tbody>
+          </table></div>
+        </details>
+      </div>
+    </section>
+
+    <article class="content">
+      <h2>Cómo se calcula la cuota de una hipoteca</h2>
+      <p>En España casi todas las hipotecas usan el <strong>sistema de amortización francés</strong>: pagas la misma cuota cada mes, pero al principio la mayor parte son intereses y, con el tiempo, cada vez más se destina a devolver capital. La fórmula es:</p>
+      <p style="font-family:ui-monospace,Consolas,monospace;background:var(--surface-2);padding:.8rem 1rem;border-radius:10px;overflow-x:auto">Cuota = C × i / (1 − (1 + i)<sup>−n</sup>)</p>
+      <p>donde <em>C</em> es el capital prestado, <em>i</em> el interés mensual (TIN anual / 12) y <em>n</em> el número de cuotas.</p>
+
+      <h3>Hipoteca fija o variable</h3>
+      <p>Con un tipo <strong>fijo</strong> la cuota no cambia nunca. En una <strong>variable</strong> el interés es el Euríbor más un diferencial y se revisa cada 6 o 12 meses, por lo que la cuota puede subir o bajar. Esta calculadora asume que el Euríbor se mantiene constante durante todo el préstamo.</p>
+
+      <h3>Impuestos y gastos de la compra</h3>
+      <ul>
+        <li><strong>Segunda mano</strong>: Impuesto de Transmisiones Patrimoniales (ITP), entre el 4 % y el 10 % según la comunidad.</li>
+        <li><strong>Obra nueva</strong>: IVA del 10 % (IGIC en Canarias) más Actos Jurídicos Documentados (AJD) de la compraventa, entre el 0,5 % y el 1,5 %.</li>
+        <li><strong>Gastos</strong>: notaría y registro de la compraventa, tasación y, opcionalmente, gestoría. Los gastos de constitución de la hipoteca los paga el banco.</li>
+      </ul>
+      <p>Muchas comunidades aplican tipos reducidos a jóvenes, familias numerosas, personas con discapacidad o viviendas de menor valor. Ajusta el porcentaje si te corresponde alguno.</p>
+
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        <details><summary>¿Cuánto dinero necesito ahorrado?</summary><p>Como regla general, el 20 % del precio de la vivienda más entre un 8 % y un 14 % para impuestos y gastos. Para un piso de 250.000 € de segunda mano eso supone fácilmente más de 70.000 €.</p></details>
+        <details><summary>¿Qué cuota me puedo permitir?</summary><p>Los bancos y el Banco de España recomiendan que la cuota no supere el 30-35 % de los ingresos netos del hogar. Introduce tus ingresos en la calculadora para ver tu ratio de endeudamiento.</p></details>
+        <details><summary>¿Me conviene un plazo más largo?</summary><p>Un plazo más largo reduce la cuota mensual, pero aumenta mucho los intereses totales. Prueba a cambiar el plazo en la calculadora para comparar.</p></details>
+        <details><summary>¿Qué diferencia hay entre TIN y TAE?</summary><p>El TIN es el interés que se aplica al préstamo. La TAE incluye además comisiones y productos vinculados, por lo que sirve para comparar ofertas. La cuota se calcula con el TIN.</p></details>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap cols">
+      <p>© <span data-year></span> Cuentas Claras. Resultados orientativos; no sustituyen el asesoramiento de un profesional ni una oferta vinculante de una entidad financiera.</p>
+      <nav aria-label="Pie"><a href="sueldo-neto.html">Sueldo neto</a><a href="irpf.html">IRPF</a><a href="hipoteca.html">Hipoteca</a><a href="cuota-autonomo.html">Autónomos</a></nav>
+      <nav class="legal-links" aria-label="Legal"><a href="aviso-legal.html">Aviso legal</a><a href="politica-privacidad.html">Política de privacidad</a><a href="politica-cookies.html">Política de cookies</a><a href="politica-cookies.html#gestionar" data-cookie-settings>Configurar cookies</a></nav>
+    </div>
+  </footer>
+
+  <script src="assets/fiscal.js"></script>
+  <script src="assets/ui.js"></script>
+  <script>
+    (function () {
+      const { eur, pct } = UI;
+      const sel = UI.$('#ccaa');
+      sel.innerHTML = Fiscal.PARAM.ccaa.map((c) => `<option value="${c.id}"${c.id === 'mad' ? ' selected' : ''}>${c.nombre}</option>`).join('');
+
+      // Rellena el % del impuesto al cambiar comunidad o tipo de vivienda
+      function tipoImpuesto() {
+        const c = Fiscal.PARAM.ccaa.find((x) => x.id === sel.value);
+        const nueva = UI.sel('estado') === 'nueva';
+        UI.set('imp-l', nueva ? 'AJD de la compraventa' : 'ITP');
+        UI.$('#imp').value = String(nueva ? c.ajd : c.itp).replace('.', ',');
+      }
+      sel.addEventListener('change', tipoImpuesto);
+      UI.$('#estado').addEventListener('change', tipoImpuesto);
+      tipoImpuesto();
+
+      function calcular() {
+        const variable = UI.$('input[name="tipo"]:checked').value === 'variable';
+        UI.show('var-f', variable);
+        UI.show('tin-f', !variable);
+
+        const precio = UI.val('precio');
+        const entrada = Math.min(UI.val('entrada'), precio);
+        const capital = Math.max(0, precio - entrada);
+        const anios = Math.min(40, Math.max(1, UI.val('plazo')));
+        const tipoAnual = variable ? UI.val('euribor') + UI.val('dif') : UI.val('tin');
+        const h = Fiscal.calcularHipoteca({ capital, anios, tipoAnual });
+
+        const nueva = UI.sel('estado') === 'nueva';
+        const impPct = UI.val('imp') / 100;
+        const iva = nueva ? precio * Fiscal.PARAM.ivaViviendaNueva : 0;
+        const impuesto = precio * impPct;
+        const gastos = UI.val('gastos');
+        const costesCompra = iva + impuesto + gastos;
+        const ahorroTotal = entrada + costesCompra;
+        const ltv = precio > 0 ? capital / precio : 0;
+        const ingresos = UI.val('ingresos');
+
+        UI.set('hero-v', eur(h.cuota));
+        UI.set('hero-s', `${h.n} cuotas · ${pct(tipoAnual)} ${variable ? '(Euríbor + diferencial)' : 'fijo'}`);
+        UI.set('k-cap', eur(capital, 0));
+        UI.set('k-int', eur(h.totalIntereses, 0));
+        UI.set('k-ltv', pct(ltv * 100, 1));
+        UI.set('k-aho', eur(ahorroTotal, 0));
+
+        UI.bar('bar', [
+          { label: 'Capital', value: capital, cls: 's1' },
+          { label: 'Intereses', value: h.totalIntereses, cls: 's2' },
+          { label: 'Impuestos y gastos', value: costesCompra, cls: 's3' }
+        ]);
+
+        const L = [['Precio de la vivienda', eur(precio)]];
+        if (nueva) L.push(['IVA (10 %)', '+ ' + eur(iva)]);
+        L.push([nueva ? `AJD (${pct(impPct * 100)})` : `ITP (${pct(impPct * 100)})`, '+ ' + eur(impuesto)]);
+        L.push(['Notaría, registro, tasación…', '+ ' + eur(gastos)]);
+        L.push(['Coste total de la compra', eur(precio + costesCompra)]);
+        L.push(['Financiado por el banco', '− ' + eur(capital)]);
+        UI.html('lines', L.map(([k, v]) => `<li><span>${k}</span><b>${v}</b></li>`).join('') +
+          `<li class="total"><span>Ahorro que necesitas</span><b>${eur(ahorroTotal)}</b></li>` +
+          `<li><span>Total pagado al banco</span><b>${eur(h.totalPagado)}</b></li>`);
+
+        const notas = [];
+        if (ltv > 0.8) notas.push(['warn', `Pides el ${pct(ltv * 100, 0)} del precio. La mayoría de bancos financia como máximo el 80 % (salvo avales como el ICO para jóvenes).`]);
+        if (anios > 30) notas.push(['', 'Muchos bancos limitan el plazo a 30 años o a que termines de pagar antes de los 70-75 años.']);
+        if (ingresos > 0) {
+          const ratio = h.cuota / ingresos;
+          notas.push([ratio > 0.35 ? 'warn' : 'good',
+            `La cuota supone el ${pct(ratio * 100, 1)} de tus ingresos. ${ratio > 0.35 ? 'Supera el 35 % recomendado: puede costarte conseguir la financiación.' : 'Está dentro del 35 % recomendado.'} Ingresos recomendados: ${eur(h.cuota / 0.35, 0)}/mes.`]);
+        }
+        UI.html('notes', notas.map(([c, t]) => `<p class="note ${c}">${t}</p>`).join(''));
+
+        UI.html('t-am', h.porAnio.map((a) =>
+          `<tr><td>${a.anio}</td><td>${eur(a.cuotas, 0)}</td><td>${eur(a.intereses, 0)}</td><td>${eur(a.amortizado, 0)}</td><td>${eur(a.pendiente, 0)}</td></tr>`).join(''));
+      }
+      UI.bind('f', calcular);
+    })();
+  </script>
+</body>
+</html>

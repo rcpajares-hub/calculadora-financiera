@@ -1,0 +1,9 @@
+# Cabeceras HTTP de seguridad (Netlify)
+# La CSP no restringe scripts para no romper AdSense; bloquea el resto de vectores habituales.
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), usb=(), payment=()
+  Content-Security-Policy: base-uri 'self'; object-src 'none'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  Cross-Origin-Opener-Policy: same-origin-allow-popups

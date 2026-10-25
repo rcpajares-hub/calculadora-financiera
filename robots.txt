@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://calculadora-cuentas-claras.netlify.app/sitemap.xml

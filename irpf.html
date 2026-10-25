@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora IRPF 2026 | Cuentas Claras</title>
+  <meta name="description" content="Calcula tu IRPF y el resultado de la declaración de la renta: tramos, tipo medio y marginal, mínimo personal y familiar, ahorro y planes de pensiones.">
+  <link rel="canonical" href="https://calculadora-cuentas-claras.netlify.app/irpf">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=PT+Sans+Narrow:wght@400;700&display=swap">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1133184139072632" crossorigin="anonymous"></script>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f6b55'/%3E%3Cpath d='M9 21h14M9 16h14M9 11h8' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "¿Cuáles son los tramos del IRPF?", "acceptedAnswer": {"@type": "Answer", "text": "La escala general va del 19 % hasta 12.450 € al 47 % a partir de 300.000 €, con tramos intermedios del 24 %, 30 %, 37 % y 45 %. Cada tipo se aplica solo a la parte de la base que cae en ese tramo."}},
+      {"@type": "Question", "name": "¿Qué diferencia hay entre tipo medio y tipo marginal?", "acceptedAnswer": {"@type": "Answer", "text": "El tipo marginal es el porcentaje del tramo más alto que alcanzas; el tipo medio es lo que pagas en total dividido entre tus ingresos, y siempre es menor."}},
+      {"@type": "Question", "name": "¿Por qué me sale a pagar en la renta?", "acceptedAnswer": {"@type": "Answer", "text": "Ocurre cuando las retenciones aplicadas durante el año son inferiores al impuesto final, por ejemplo al tener dos pagadores, rendimientos del ahorro o un cambio de salario."}}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="currentColor" style="color:var(--accent)"/><path d="M9 21h14M9 16h14M9 11h8" stroke="var(--surface)" stroke-width="3" stroke-linecap="round"/></svg>
+        Cuentas Claras
+      </a>
+      <nav class="nav" aria-label="Calculadoras">
+        <a href="sueldo-neto.html">Sueldo neto</a>
+        <a href="irpf.html" aria-current="page">IRPF</a>
+        <a href="hipoteca.html">Hipoteca</a>
+        <a href="cuota-autonomo.html">Autónomos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="page-head">
+      <span class="badge">Renta <span data-year></span></span>
+      <h1>Calculadora de IRPF</h1>
+      <p class="lead">Estima cuánto IRPF te corresponde pagar en el año y si tu declaración de la renta saldrá a devolver o a pagar.</p>
+    </div>
+
+    <section class="calc">
+      <form id="f" class="card" novalidate>
+        <p class="fieldset-title">Ingresos del año</p>
+        <div class="field">
+          <label for="bruto">Rendimientos íntegros del trabajo</label>
+          <div class="input-wrap"><input id="bruto" type="text" inputmode="decimal" value="35.000" data-money autocomplete="off"><span class="suffix">€</span></div>
+          <span class="hint">Salario bruto anual (casilla de retribuciones dinerarias)</span>
+        </div>
+        <div class="field">
+          <label for="ahorro">Rendimientos del ahorro</label>
+          <div class="input-wrap"><input id="ahorro" type="text" inputmode="decimal" value="0" data-money autocomplete="off"><span class="suffix">€</span></div>
+          <span class="hint">Intereses, dividendos y ganancias por venta de acciones o fondos</span>
+        </div>
+
+        <hr class="divider">
+        <p class="fieldset-title">Pagado durante el año</p>
+        <label class="check"><input id="ss-auto" type="checkbox" checked><span>Calcular cotizaciones a la Seguridad Social automáticamente</span></label>
+        <div class="field" id="ss-f" hidden>
+          <label for="ss">Cotizaciones a la Seguridad Social</label>
+          <div class="input-wrap"><input id="ss" type="text" inputmode="decimal" value="2.275" data-money autocomplete="off"><span class="suffix">€</span></div>
+        </div>
+        <label class="check"><input id="ret-auto" type="checkbox" checked><span>Estimar retenciones de IRPF como en una nómina estándar</span></label>
+        <div class="field" id="ret-f" hidden>
+          <label for="ret">Retenciones de IRPF soportadas</label>
+          <div class="input-wrap"><input id="ret" type="text" inputmode="decimal" value="0" data-money autocomplete="off"><span class="suffix">€</span></div>
+          <span class="hint">Aparecen en tu certificado de retenciones o en los datos fiscales</span>
+        </div>
+        <div class="field">
+          <label for="pp">Aportaciones a planes de pensiones</label>
+          <div class="input-wrap"><input id="pp" type="text" inputmode="decimal" value="0" data-money autocomplete="off"><span class="suffix">€</span></div>
+          <span class="hint">Reducen la base hasta 1.500 € al año (planes individuales)</span>
+        </div>
+
+        <hr class="divider">
+        <p class="fieldset-title">Situación personal</p>
+        <div class="row">
+          <div class="field">
+            <label for="edad">Edad</label>
+            <input id="edad" type="number" inputmode="numeric" min="16" max="110" value="35">
+          </div>
+          <div class="field">
+            <label for="hijos">Hijos a cargo</label>
+            <input id="hijos" type="number" inputmode="numeric" min="0" max="15" value="0">
+          </div>
+        </div>
+        <div class="field" id="menores3-f">
+          <label for="menores3">De ellos, menores de 3 años</label>
+          <input id="menores3" type="number" inputmode="numeric" min="0" max="15" value="0">
+        </div>
+        <label class="check" id="compartidos-f"><input id="compartidos" type="checkbox" checked>
+          <span>Comparto los hijos con el otro progenitor<br><span class="hint">El mínimo por descendientes se reparte al 50 %</span></span>
+        </label>
+      </form>
+
+      <div class="card results" aria-live="polite">
+        <div class="hero" id="hero">
+          <div class="k" id="hero-k">Resultado de la declaración</div>
+          <div class="v" id="hero-v">—</div>
+          <div class="s" id="hero-s"></div>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi"><div class="k">IRPF total del año</div><div class="v" id="k-cuota">—</div></div>
+          <div class="kpi"><div class="k">Retenciones pagadas</div><div class="v" id="k-ret">—</div></div>
+          <div class="kpi"><div class="k">Tipo medio</div><div class="v" id="k-medio">—</div></div>
+          <div class="kpi"><div class="k">Tipo marginal</div><div class="v" id="k-marg">—</div></div>
+        </div>
+
+        <ul class="lines" id="lines"></ul>
+
+        <details class="more" open>
+          <summary>Tramos de la base general</summary>
+          <div class="table-wrap"><table><thead><tr><th>Tramo</th><th>Tipo</th><th>Base en tramo</th><th>Cuota</th></tr></thead><tbody id="t-gen"></tbody></table></div>
+          <div id="ahorro-box">
+            <h3>Tramos de la base del ahorro</h3>
+            <div class="table-wrap"><table><thead><tr><th>Tramo</th><th>Tipo</th><th>Base en tramo</th><th>Cuota</th></tr></thead><tbody id="t-aho"></tbody></table></div>
+          </div>
+          <p class="note">A la cuota de los tramos se le resta la cuota correspondiente al mínimo personal y familiar (<span id="n-min"></span>), que tributa al 0 %.</p>
+        </details>
+      </div>
+    </section>
+
+    <article class="content">
+      <h2>Tramos del IRPF <span data-year></span></h2>
+      <p>El IRPF es un impuesto progresivo: tu base liquidable se divide en tramos y cada uno tributa a su propio tipo. La escala general que usa esta calculadora (parte estatal más la autonómica de referencia) es:</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Base liquidable</th><th>Tipo</th></tr></thead>
+        <tbody>
+          <tr><td>Hasta 12.450 €</td><td>19 %</td></tr>
+          <tr><td>De 12.450 a 20.200 €</td><td>24 %</td></tr>
+          <tr><td>De 20.200 a 35.200 €</td><td>30 %</td></tr>
+          <tr><td>De 35.200 a 60.000 €</td><td>37 %</td></tr>
+          <tr><td>De 60.000 a 300.000 €</td><td>45 %</td></tr>
+          <tr><td>Más de 300.000 €</td><td>47 %</td></tr>
+        </tbody>
+      </table></div>
+      <p style="margin-top:1rem">Cada comunidad autónoma fija su propia mitad de la escala, así que el resultado real puede variar algo según dónde vivas. Los rendimientos del ahorro tributan aparte, del 19 % al 30 %.</p>
+
+      <h3>Del salario bruto a la base liquidable</h3>
+      <ol>
+        <li>Al bruto se le restan las cotizaciones a la Seguridad Social y 2.000 € de «otros gastos».</li>
+        <li>Si tus rendimientos netos son bajos, se aplica la reducción por rendimientos del trabajo.</li>
+        <li>Las aportaciones a planes de pensiones reducen la base hasta el límite legal.</li>
+        <li>Sobre la base resultante se aplica la escala, descontando el mínimo personal y familiar (5.550 € más los incrementos por edad e hijos).</li>
+      </ol>
+
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        <details><summary>¿Qué diferencia hay entre tipo medio y tipo marginal?</summary><p>El tipo marginal es el del tramo más alto que alcanzas: lo que pagarías por cada euro extra. El tipo medio es el IRPF total dividido entre tus ingresos, y siempre es bastante menor.</p></details>
+        <details><summary>¿Por qué me sale a pagar en la renta?</summary><p>Suele pasar con dos o más pagadores, al cobrar paro, por ganancias en bolsa o cuando la retención de la nómina fue demasiado baja. La declaración ajusta la diferencia entre lo retenido y el impuesto real.</p></details>
+        <details><summary>¿Es obligatorio presentar la declaración?</summary><p>En general, no estás obligado si solo tienes un pagador y ganas menos de 22.000 € (15.876 € con dos pagadores cuando el segundo supera 1.500 €). Aun así, presentarla puede salirte a devolver.</p></details>
+        <details><summary>¿Qué no tiene en cuenta esta calculadora?</summary><p>Deducciones autonómicas, vivienda habitual del régimen transitorio, donativos, maternidad, familia numerosa, discapacidad, tributación conjunta o rendimientos de actividades económicas e inmuebles.</p></details>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap cols">
+      <p>© <span data-year></span> Cuentas Claras. Resultados orientativos; no sustituyen el asesoramiento de un profesional ni los cálculos oficiales de la AEAT o la Seguridad Social.</p>
+      <nav aria-label="Pie"><a href="sueldo-neto.html">Sueldo neto</a><a href="irpf.html">IRPF</a><a href="hipoteca.html">Hipoteca</a><a href="cuota-autonomo.html">Autónomos</a></nav>
+      <nav class="legal-links" aria-label="Legal"><a href="aviso-legal.html">Aviso legal</a><a href="politica-privacidad.html">Política de privacidad</a><a href="politica-cookies.html">Política de cookies</a><a href="politica-cookies.html#gestionar" data-cookie-settings>Configurar cookies</a></nav>
+    </div>
+  </footer>
+
+  <script src="assets/fiscal.js"></script>
+  <script src="assets/ui.js"></script>
+  <script>
+    (function () {
+      const { eur, pct } = UI;
+      const rango = (t) => t.hasta === Infinity ? `Más de ${eur(t.desde, 0)}` : `${eur(t.desde, 0)} – ${eur(t.hasta, 0)}`;
+      const filas = (tramos) => tramos.map((t) =>
+        `<tr class="${t.gravado > 0 ? '' : 'dim'}"><td>${rango(t)}</td><td>${pct(t.tipo * 100, 0)}</td><td>${eur(t.gravado)}</td><td>${eur(t.cuota)}</td></tr>`).join('');
+
+      function calcular() {
+        const hijos = Math.max(0, Math.floor(UI.val('hijos')));
+        UI.show('menores3-f', hijos > 0);
+        UI.show('compartidos-f', hijos > 0);
+        const ssAuto = UI.checked('ss-auto'), retAuto = UI.checked('ret-auto');
+        UI.show('ss-f', !ssAuto);
+        UI.show('ret-f', !retAuto);
+
+        const r = Fiscal.calcularIrpf({
+          bruto: UI.val('bruto'), ahorro: UI.val('ahorro'), planPensiones: UI.val('pp'),
+          ss: ssAuto ? null : UI.val('ss'), retenciones: retAuto ? null : UI.val('ret'),
+          edad: UI.val('edad'), hijos, menores3: Math.min(hijos, Math.max(0, Math.floor(UI.val('menores3')))),
+          compartidos: UI.checked('compartidos'), contrato: 'indefinido'
+        });
+
+        const devolver = r.resultado < 0;
+        UI.$('#hero').classList.toggle('neg', r.resultado >= 10);
+        UI.set('hero-k', Math.abs(r.resultado) < 10 ? 'Resultado de la declaración' : devolver ? 'Te devuelven' : 'Te sale a pagar');
+        UI.set('hero-v', eur(Math.abs(r.resultado)));
+        UI.set('hero-s', Math.abs(r.resultado) < 10 ? (r.resultado > 0 ? "Prácticamente nada a pagar: las retenciones cubren el impuesto" : "Prácticamente nada a devolver: las retenciones cubren el impuesto")
+          : devolver ? 'Has pagado más retenciones de las necesarias' : 'Las retenciones no cubren todo el impuesto');
+
+        UI.set('k-cuota', eur(r.cuotaLiquida));
+        UI.set('k-ret', eur(r.retenciones));
+        UI.set('k-medio', pct(r.tipoMedio * 100));
+        UI.set('k-marg', pct(r.tipoMarginal * 100, 0));
+
+        const L = [
+          ['Rendimientos íntegros del trabajo', eur(r.bruto)],
+          ['Cotizaciones a la Seguridad Social', '− ' + eur(r.ss)],
+          ['Otros gastos deducibles', '− ' + eur(Math.min(2000, Math.max(0, r.rnPrevio)))]
+        ];
+        if (r.reduccion > 0) L.push(['Reducción por rendimientos del trabajo', '− ' + eur(r.reduccion)]);
+        if (r.planPensiones > 0) L.push(['Reducción por plan de pensiones', '− ' + eur(r.planPensiones)]);
+        L.push(['Base liquidable general', eur(r.baseGeneral)]);
+        if (r.baseAhorro > 0) L.push(['Base liquidable del ahorro', eur(r.baseAhorro)]);
+        L.push(['Mínimo personal y familiar', eur(r.minimo.total)]);
+        L.push(['Cuota base general', eur(r.general.cuota)]);
+        if (r.baseAhorro > 0) L.push(['Cuota base del ahorro', eur(r.ahorro.cuota)]);
+        if (r.deduccionSmi > 0) L.push(['Deducción por rentas bajas (SMI)', '− ' + eur(r.deduccionSmi)]);
+        UI.html('lines', L.map(([k, v]) => `<li><span>${k}</span><b>${v}</b></li>`).join('') +
+          `<li class="total"><span>Cuota líquida (IRPF del año)</span><b>${eur(r.cuotaLiquida)}</b></li>`);
+
+        UI.html('t-gen', filas(r.general.tramos));
+        UI.show('ahorro-box', r.baseAhorro > 0);
+        UI.html('t-aho', filas(r.ahorro.tramos));
+        UI.set('n-min', eur(r.minimo.total));
+      }
+      UI.bind('f', calcular);
+    })();
+  </script>
+</body>
+</html>
